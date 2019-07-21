@@ -6,7 +6,6 @@ import image from './main.jpg'
 function App() {
   return (
     <div className="App">
-      hello rhete
       <img className="small" src={image} />
     </div>
   );

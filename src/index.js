@@ -15,9 +15,13 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
+//configure service worker and so on:
+
+//What Is Your Service Worker Name?
+const ServiceWorkerName = 'sw.js';
 //register service worker
 if ('serviceWorker' in navigator) {
-    const wb = new Workbox('sw.js');
+    const wb = new Workbox(ServiceWorkerName);
 
     wb.addEventListener('installed', event => {
       if (event.isUpdate) {

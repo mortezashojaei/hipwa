@@ -15,6 +15,7 @@ if ('function' === typeof importScripts) {
       workbox.precaching.precacheAndRoute([]);
   
   /* custom cache rules*/
+  //custom:chache any image used in webapp
   workbox.routing.registerRoute(
         /\.(?:png|gif|jpg|jpeg)$/,
         workbox.strategies.cacheFirst({

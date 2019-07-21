@@ -6,6 +6,7 @@ const buildSW = () => {
     swSrc: 'src/sw-template.js', // this is your sw template file
     swDest: 'build/sw.js', // this will be created in the build step
     globDirectory: 'build',
+    //this global patterns chaches css and html files
     globPatterns: [
       '**\/*.{css,html}',
     ]
