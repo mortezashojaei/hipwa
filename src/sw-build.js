@@ -8,7 +8,7 @@ const buildSW = () => {
     globDirectory: 'build',
     //this global patterns chaches css and html files
     globPatterns: [
-      '**\/*.{css,html}',
+      '\.css$',
     ]
   }).then(({count, size, warnings}) => {
     // Optionally, log any warnings and details.

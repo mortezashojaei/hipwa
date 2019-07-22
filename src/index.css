@@ -14,5 +14,14 @@ code {
 
 
 .small{
-  height: 900px;
+  height: 300px;
+}
+
+
+.morteza-red{
+  color: red
+}
+
+.home-red{
+  color: blue
 }

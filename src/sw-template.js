@@ -7,8 +7,8 @@ if ('function' === typeof importScripts) {
       console.log('Workbox is loaded');
   
 /*  Updating SW lifecycle to update the app after user triggered refresh    */
-      workbox.core.skipWaiting()
-      workbox.core.clientsClaim()
+      workbox.core.skipWaiting();
+      workbox.core.clientsClaim();
 
 
       /* injection point for manifest files.  */
@@ -17,9 +17,9 @@ if ('function' === typeof importScripts) {
   /* custom cache rules*/
   //custom:chache any image used in webapp
   workbox.routing.registerRoute(
-        /\.(?:png|gif|jpg|jpeg)$/,
+        /^((?!\/morteza).)*$/,
         workbox.strategies.cacheFirst({
-          cacheName: 'images',
+          cacheName: 'notmorteza',
           plugins: [
             new workbox.expiration.Plugin({
               maxEntries: 60,
@@ -28,7 +28,8 @@ if ('function' === typeof importScripts) {
           ],
         })
       );
-  
+
+
 
 // Register event listener for the 'push' event.
 self.addEventListener('push', function(event) {
@@ -36,17 +37,21 @@ self.addEventListener('push', function(event) {
   // Other formats are supported (ArrayBuffer, Blob, JSON), check out the documentation
   // on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData.
   const payload = event.data ? event.data.text() : 'no payload';
-
+console.log(event)
   // Keep the service worker alive until the notification is created.
   event.waitUntil(
     // Show a notification with title 'ServiceWorker Cookbook' and use the payload
     // as the body.
-    self.registration.showNotification('ServiceWorker Cookbook', {
+    self.registration.showNotification("PushTitle",   {
       body: payload,
+      icon: 'static/media/main.facec291.jpg',
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: 1
+      }
     })
   );
 });
-
 
   
   } else {
