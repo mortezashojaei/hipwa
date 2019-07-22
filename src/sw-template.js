@@ -32,24 +32,28 @@ if ('function' === typeof importScripts) {
 
 
 // Register event listener for the 'push' event.
-self.addEventListener('push', function(event) {
-  // Retrieve the textual payload from event.data (a PushMessageData object).
-  // Other formats are supported (ArrayBuffer, Blob, JSON), check out the documentation
-  // on https://developer.mozilla.org/en-US/docs/Web/API/PushMessageData.
-  const payload = event.data ? event.data.text() : 'no payload';
-console.log(event)
-  // Keep the service worker alive until the notification is created.
-  event.waitUntil(
-    // Show a notification with title 'ServiceWorker Cookbook' and use the payload
-    // as the body.
-    self.registration.showNotification("PushTitle",   {
-      body: payload,
-      icon: 'static/media/main.facec291.jpg',
-      data: {
-        dateOfArrival: Date.now(),
-        primaryKey: 1
-      }
-    })
+self.addEventListener('push', function(e) {
+  var body,title,icon,click_action,vibrate;
+  var actions = [];
+  const {notification} =e.data.json()
+    console.log();
+    body = notification.body;
+    title= notification.title;
+    icon= notification.icon;
+    click_action=notification.click_action;
+    actions=JSON.parse(e.data.json().data.actions);
+    vibrate=notification.vibrate;
+
+ 
+  var options = {
+    body: body,
+    icon: icon,
+    vibrate: vibrate,
+    actions: actions,
+    click_action:click_action
+  };
+  e.waitUntil(
+    self.registration.showNotification(title, options)
   );
 });
 

@@ -3,7 +3,7 @@ import { askForPermissioToReceiveNotifications } from './pushNotification';
 
 const NotificationButton = () => (
     <button onClick={askForPermissioToReceiveNotifications} >
-      Clique aqui para receber notificações
+      Notif Me
     </button>
 );
 
